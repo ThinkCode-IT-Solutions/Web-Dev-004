@@ -32,7 +32,7 @@ result = n1 <= 10;
 // value brabar | datatype difference
 
 let user_pass = 21; 
-let db_pass = "211";
+let db_pass = "21";
 let condition = user_pass != db_pass; //  check both  value and datatype
 
 

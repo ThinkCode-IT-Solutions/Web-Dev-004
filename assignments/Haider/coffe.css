@@ -1,3 +1,10 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
 .body{
     margin: 0;
     padding: 0;
@@ -6,8 +13,8 @@
 .back-img{
     background-size: cover;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: 984px;
+    /* background-size: 100% 100%; */
+    /* width: 984px; */
     position: relative;
     /* left: -300px; */
     top: 0px;
@@ -59,13 +66,13 @@
 
 .second-header{
     background-color: #020202bd;
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 1%;
-    margin-right: 0%;
+    /* width: 100%; */
+    /* padding: 10px 20px; */
+    /* margin-top: 1%; */
+    /* margin-right: 0%; */
     display: flex;
     align-items: center;
-    gap: 40px;
+    /* gap: 40px; */
 }
 .logo-area{
     margin: 10px 0 0 7%;
