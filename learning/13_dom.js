@@ -24,4 +24,4 @@ let mainButton = document.getElementById("cta");
 console.log(mainButton);
 mainButton.innerHTML = "<u>Dont Click me</u>"
 mainButton.innerText = "Percentage";
-mainButton.addEventListener("dblclick",runPercentageFunc);``
+mainButton.addEventListener("dblclick",runPercentageFunc);

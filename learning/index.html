@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning JS</title>
-    <script defer src="13_dom.js"></script>
+    <script defer src="14_dom.js"></script>
     <style>
       * {
         margin: 0px;
@@ -50,6 +50,28 @@
         border: 1px solid #333333;
         margin: 1rem;
       }
+      .para{
+        /* font-size: ; */
+        color: #333333;
+        background-color: whitesmoke;
+        padding: 1rem;
+        border: 1px solid #333333;
+        margin: .5rem;
+        border-radius: 1rem;
+      }
+      #clicker{
+        background-color: teal;
+        color: white;
+        border-radius: .5rem;
+        margin-left: 0px !important;
+      }
+      #clicker:hover{
+        background-color: rgb(0, 70, 70);
+        cursor: pointer;
+      }
+      .c-red{
+        color: red;
+      }
     </style>
 
 
@@ -65,6 +87,18 @@
         <button id="cta">Click me</button>
       </div>
     </div>
+    <p class="para" id="para1">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim rem nostrum aspernatur molestias, cum sunt perferendis nisi delectus ratione corporis officia perspiciatis odit aut? Temporibus repudiandae perspiciatis alias consequuntur aliquam!
+      <button id="clicker">
+        Read More
+      </button>
+    </p>
+    <div class="para c-red">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam minus quod cumque optio odio eos doloremque illo velit consequuntur? Eligendi, repudiandae quos harum atque praesentium ad perspiciatis rem asperiores dolorum.
+    </div>
+    <p class="c-red">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem distinctio doloribus vel iure, itaque fugit veniam facilis, ratione delectus animi molestiae? Asperiores ipsam, aut incidunt quia dolorem alias sequi officia.
+    </p>
 
 
 
