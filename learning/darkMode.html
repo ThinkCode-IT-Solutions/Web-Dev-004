@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Savate:ital,wght@0,200..900;1,200..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #dee2e6;
+            --secondary-color: #e9ecef;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            background-color: var(--light-color);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+
+        .header .brand h2 {
+            font-family: "Savate", sans-serif;
+        }
+
+        .header ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header ul li {
+            list-style: none;
+        }
+
+        .header ul li a {
+            text-decoration: none;
+            color: black;
+            padding: 1rem;
+        }
+
+        .nav-cta {
+            padding: .6rem;
+            background-color: none;
+            border: none;
+            border-radius: .5rem;
+            margin-left: .4rem;
+        }
+
+        .card {
+            display: flex;
+            max-width: 600px;
+            height: auto;
+            background-color: var(--secondary-color);
+            border-radius: 1rem;
+            padding: .5rem;
+            transition: all .3s ease;
+            margin-bottom: .5rem;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card .imageBox img {
+            width: 150px;
+            height: 150px;
+            border-radius: 1rem;
+        }
+
+        .card .contentBox {
+            padding: .5rem;
+        }
+
+        .card-cta {
+            padding: .6rem 1.3rem;
+            cursor: pointer;
+            border-radius: .5rem;
+            border: 1px solid #333333;
+        }
+
+        .ccb-title {
+            font-size: larger;
+
+        }
+
+        .ccb-description {
+            margin: .5rem 0rem;
+            color: rgba(19, 18, 18, 0.911);
+        }
+
+        .cardHolder {
+            width: 600px;
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .nav-cta {
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            transform: scale(.9);
+        }
+
+        .nav-cta:active {
+            transform: scale(.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="brand">
+            <h2>Darker</h2>
+        </div>
+        <ul>
+            <li class="nav-list">
+                <a href="" class="nav-link">
+                    Home
+                </a>
+            </li>
+            <li class="nav-list">
+                <a href="" class="nav-link">
+                    About
+                </a>
+            </li>
+            <li class="nav-list">
+                <a href="" class="nav-link">
+                    Services
+                </a>
+            </li>
+            <li class="nav-list">
+                <a href="" class="nav-link">
+                    Contact
+                </a>
+            </li>
+        </ul>
+        <div>
+            <button class="nav-cta">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
+                    <path
+                        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cardHolder">
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+            <!-- Card starts here -->
+            <div class="card">
+                <div class="imageBox">
+                    <img src="https://picsum.photos/200/200" alt="image not loading">
+                </div>
+                <div class="contentBox">
+                    <h3 class="ccb-title">Something to do </h3>
+                    <p class="ccb-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ullam
+                        repellendus fugit corporis
+                        harum optio debitis! Odio aliquam unde voluptates suscipit quidem ex? Aliquid suscipit vitae
+                        tempore quae alias magnam.</p>
+                    <button class="card-cta">Read More</button>
+                </div>
+
+            </div>
+            <!-- card ends here -->
+
+        </div>
+    </div>
+
+    <!-- My javascript goes here -->
+    <script>
+        let isDarkMode = false;
+
+
+        //  function to change the theme mode
+        let themeModeChanger = (e) => {
+            let themeModeButton = document.querySelector(".nav-cta");
+            if (!isDarkMode) {
+                themeModeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                            <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                            </svg>`;
+                console.log("theme is changed to dark Mode");
+                let pageBody = document.querySelector("body");
+                pageBody.style.backgroundColor = "#333333";
+
+                let header = document.querySelector(".header");
+                header.style.backgroundColor = "#1b263b";
+                header.style.color = "whitesmoke";
+
+
+                let navlinks = document.querySelectorAll(".nav-link");
+                console.log(navlinks);
+                for (let index = 0; index < navlinks.length; index++) {
+                    let link = navlinks[index];
+                    link.style.color = "white";
+                }
+
+                let cards = document.querySelectorAll(".card");
+                console.log(cards);
+                let index = 0;
+                while (index < cards.length) {
+                    let card = cards[index];
+                    let cardDescription = card.querySelector(".ccb-description");
+                    console.log(cardDescription);
+                    cardDescription.style.color = "white";
+                    card.style.backgroundColor = "#0d1b2a";
+                    card.style.color = "whitesmoke";
+                    index++;
+                }
+
+                isDarkMode = true;
+            } else {
+                // converting to light theme
+                themeModeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
+                        </svg>`;
+                console.log("theme is changed to light Mode");
+                let pageBody = document.querySelector("body");
+                pageBody.style.backgroundColor = "whitesmoke";
+
+                let header = document.querySelector(".header");
+                header.style.backgroundColor = "#dee2e6";
+                header.style.color = "#333333";
+
+
+                let navlinks = document.querySelectorAll(".nav-link");
+                console.log(navlinks);
+                for (let index = 0; index < navlinks.length; index++) {
+                    let link = navlinks[index];
+                    link.style.color = "#333333";
+                }
+
+                let cards = document.querySelectorAll(".card");
+                console.log(cards);
+                let index = 0;
+                while (index < cards.length) {
+                    let card = cards[index];
+                    let cardDescription = card.querySelector(".ccb-description");
+                    console.log(cardDescription);
+                    cardDescription.style.color = "#333333";
+                    card.style.backgroundColor = "#e9ecef";
+                    card.style.color = "black";
+                    index++;
+                }
+
+                isDarkMode = false;
+            }
+
+        }
+
+
+
+
+
+        let themeModeButton = document.querySelector(".nav-cta");
+        console.log(themeModeButton);
+
+        themeModeButton.addEventListener("click", themeModeChanger)
+    </script>
+</body>
+
+</html>

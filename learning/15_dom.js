@@ -45,7 +45,7 @@ pageBody.addEventListener("keydown", (event) => {
 })
 
 
-let input = document.querySelector(".name");
+let x = document.querySelector(".name");
 input.addEventListener("blur", (e) => {
     console.log("you have clicked the input tag it is now focus");
     console.log(e);

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsHub - Professional News Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0a0a0a;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2563eb;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: white;
+            color: #2563eb;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: #f8fafc;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0a0a0a;
+            letter-spacing: -1px;
+        }
+
+        .view-all {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: #1d4ed8;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid #f1f5f9;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-card:hover .card-image::after {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-category {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .card-title {
+            color: #2563eb;
+        }
+
+        .card-excerpt {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .author-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .read-more {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* Featured card */
+        .news-card.featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .news-card.featured .card-image {
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .news-card.featured .card-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .news-card.featured .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-card.featured .card-excerpt {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Category filters */
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f8fafc;
+            color: #6b7280;
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card.featured {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+
+            .news-card.featured .card-image {
+                height: 220px;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2563eb;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">NewsHub</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#politics">Politics</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#business">Business</a></li>
+                <li><a href="#sports">Sports</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stay Informed, Stay Ahead</h1>
+            <p>Your trusted source for breaking news, in-depth analysis, and stories that shape our world. Delivering
+                quality journalism with integrity and precision.</p>
+            <button class="cta-button">Explore Today's News</button>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="section-header">
+            <h2 class="section-title">Latest Headlines</h2>
+            <a href="#" class="view-all">View All Stories</a>
+        </div>
+
+        <div class="category-filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Breaking</button>
+            <button class="filter-btn">Politics</button>
+            <button class="filter-btn">Technology</button>
+            <button class="filter-btn">Business</button>
+            <button class="filter-btn">Sports</button>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card featured">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Breaking News</span>
+                    <h3 class="card-title">Global Economic Summit Addresses Climate Investment Strategies</h3>
+                    <p class="card-excerpt">World leaders and financial experts gather to discuss unprecedented climate
+                        investment initiatives that could reshape global economic policies and environmental
+                        sustainability efforts for the next decade.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>Sarah Chen</span>
+                        </div>
+                        <span class="card-date">2 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read Full Story</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Technology</span>
+                    <h3 class="card-title">Breakthrough in Quantum Computing Research</h3>
+                    <p class="card-excerpt">Scientists achieve new milestone in quantum error correction, bringing
+                        practical quantum computers closer to reality.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>Dr. Marcus Webb</span>
+                        </div>
+                        <span class="card-date">4 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Business</span>
+                    <h3 class="card-title">Tech Stocks Rally Amid Innovation Surge</h3>
+                    <p class="card-excerpt">Major technology companies see significant gains as investors respond
+                        positively to breakthrough innovations.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>Jennifer Liu</span>
+                        </div>
+                        <span class="card-date">6 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Health</span>
+                    <h3 class="card-title">Revolutionary Gene Therapy Shows Promise</h3>
+                    <p class="card-excerpt">Clinical trials demonstrate significant success in treating previously
+                        incurable genetic disorders.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>Dr. Amanda Foster</span>
+                        </div>
+                        <span class="card-date">8 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Environment</span>
+                    <h3 class="card-title">Renewable Energy Capacity Doubles Globally</h3>
+                    <p class="card-excerpt">International report shows unprecedented growth in solar and wind energy
+                        installations worldwide.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>Michael Torres</span>
+                        </div>
+                        <span class="card-date">10 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <span class="card-category">Sports</span>
+                    <h3 class="card-title">Championship Finals Draw Record Viewership</h3>
+                    <p class="card-excerpt">Historic sporting event captures global attention with unprecedented
+                        broadcast numbers and social media engagement.</p>
+                    <div class="card-meta">
+                        <div class="card-author">
+                            <div class="author-avatar"></div>
+                            <span>David Kim</span>
+                        </div>
+                        <span class="card-date">12 hours ago</span>
+                    </div>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // News API integration
+        const apiKey = "fd8d9cccc8b8444194fa5063b029bcee";
+        const baseUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET",baseUrl);
+        xhr.onprogress = ()=>{
+            console.log("request in progress...");
+        }
+        xhr.onload = ()=>{
+            console.log("Data recieved");
+            console.log(xhr.responseText);
+            let parsedData = JSON.parse(xhr.responseText);
+            console.log("Data parsed");
+            console.log(parsedData);
+
+            if(parsedData["status"] == "ok"){
+                console.log("data is good and we have recieved " + parsedData["totalResults"] + " news article");
+
+
+                // iterate over the news 
+                // TODO:
+            }else{
+                console.log("data is bad");
+            }
+        }
+        xhr.send();
+
+
+
+
+    </script>
+</body>
+
+</html>
