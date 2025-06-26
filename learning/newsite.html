@@ -528,115 +528,10 @@
             <button class="filter-btn">Sports</button>
         </div>
 
+        <!-- news cards holder -->
         <div class="news-grid">
-            <article class="news-card featured">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Breaking News</span>
-                    <h3 class="card-title">Global Economic Summit Addresses Climate Investment Strategies</h3>
-                    <p class="card-excerpt">World leaders and financial experts gather to discuss unprecedented climate
-                        investment initiatives that could reshape global economic policies and environmental
-                        sustainability efforts for the next decade.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>Sarah Chen</span>
-                        </div>
-                        <span class="card-date">2 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read Full Story</a>
-                </div>
-            </article>
 
-            <article class="news-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Technology</span>
-                    <h3 class="card-title">Breakthrough in Quantum Computing Research</h3>
-                    <p class="card-excerpt">Scientists achieve new milestone in quantum error correction, bringing
-                        practical quantum computers closer to reality.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>Dr. Marcus Webb</span>
-                        </div>
-                        <span class="card-date">4 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </article>
 
-            <article class="news-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Business</span>
-                    <h3 class="card-title">Tech Stocks Rally Amid Innovation Surge</h3>
-                    <p class="card-excerpt">Major technology companies see significant gains as investors respond
-                        positively to breakthrough innovations.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>Jennifer Liu</span>
-                        </div>
-                        <span class="card-date">6 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Health</span>
-                    <h3 class="card-title">Revolutionary Gene Therapy Shows Promise</h3>
-                    <p class="card-excerpt">Clinical trials demonstrate significant success in treating previously
-                        incurable genetic disorders.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>Dr. Amanda Foster</span>
-                        </div>
-                        <span class="card-date">8 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Environment</span>
-                    <h3 class="card-title">Renewable Energy Capacity Doubles Globally</h3>
-                    <p class="card-excerpt">International report shows unprecedented growth in solar and wind energy
-                        installations worldwide.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>Michael Torres</span>
-                        </div>
-                        <span class="card-date">10 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <span class="card-category">Sports</span>
-                    <h3 class="card-title">Championship Finals Draw Record Viewership</h3>
-                    <p class="card-excerpt">Historic sporting event captures global attention with unprecedented
-                        broadcast numbers and social media engagement.</p>
-                    <div class="card-meta">
-                        <div class="card-author">
-                            <div class="author-avatar"></div>
-                            <span>David Kim</span>
-                        </div>
-                        <span class="card-date">12 hours ago</span>
-                    </div>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </article>
         </div>
     </section>
 
@@ -647,30 +542,64 @@
         // News API integration
         const apiKey = "fd8d9cccc8b8444194fa5063b029bcee";
         const baseUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
-
+        // xhr is used to send and recieve api request
         let xhr = new XMLHttpRequest();
 
-        xhr.open("GET",baseUrl);
-        xhr.onprogress = ()=>{
+        // opening request
+        xhr.open("GET", baseUrl);
+        xhr.onprogress = () => {
             console.log("request in progress...");
         }
-        xhr.onload = ()=>{
+        xhr.onload = () => {
             console.log("Data recieved");
             console.log(xhr.responseText);
             let parsedData = JSON.parse(xhr.responseText);
             console.log("Data parsed");
             console.log(parsedData);
 
-            if(parsedData["status"] == "ok"){
+            if (parsedData["status"] == "ok") {
                 console.log("data is good and we have recieved " + parsedData["totalResults"] + " news article");
+
+                console.log("here are the articles");
+                let articles = parsedData["articles"];
+                // console.log(articles);
+
+                let cardHolder = document.querySelector(".news-grid");
+
+                articles.forEach((item) => {
+
+                    let cardBox = ` <article class="news-card ">
+                                <div class="card-image">
+                                    <img src="${item.urlToImage}">
+                                    </div>
+                                <div class="card-content">
+                                    <span class="card-category">Breaking News</span>
+                                    <h3 class="card-title">${item.title}</h3>
+                                    <p class="card-excerpt">${item.description}</p>
+                                    <div class="card-meta">
+                                        <div class="card-author">
+                                            <div class="author-avatar"></div>
+                                            <span>${item.author}</span>
+                                        </div>
+                                        <span class="card-date">${item.publishedAt}</span>
+                                    </div>
+                                    <a href="${item.url}" class="read-more">Read Full Story</a>
+                                </div>
+                            </article>`;
+                            cardHolder.innerHTML += cardBox;
+
+                });
+
+
 
 
                 // iterate over the news 
                 // TODO:
-            }else{
+            } else {
                 console.log("data is bad");
             }
         }
+        //sending request
         xhr.send();
 
 
