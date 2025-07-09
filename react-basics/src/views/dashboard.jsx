@@ -77,14 +77,14 @@ let DashboardView = (props) => {
                 return (
                   <div key={index} className="task-item priority-high">
                     <div className="task-checkbox">
-                      <input type="checkbox" id="task1" />
+                      <input type="checkbox" id="task1"  />
                       <label htmlFor="task1"></label>
                     </div>
                     <div className="task-content">
-                      <h4>{task}</h4>
-                      <p>Due in 2 hours • Project Alpha</p>
+                      <h4>{task.title}</h4>
+                      <p>{task.date}</p>
                     </div>
-                    <div className="task-priority high">High</div>
+                    <div className="task-priority high">{task.priority}</div>
                   </div>
                 );
               })}

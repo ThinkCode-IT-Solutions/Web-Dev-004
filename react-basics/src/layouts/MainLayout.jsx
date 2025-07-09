@@ -17,10 +17,47 @@ function MainLayout() {
     inProgress: 60,
     overdue: 5,
     tasks: [
-      "buy macbook",
-      "create proposal for altora",
-      "write project description",
-      "create graphics for sf.com"
+      {
+        title: "buy macbook",
+        isCompleted : false,
+        date : "9 July, 2025",
+        priority : "high"
+
+      },
+
+      {
+        title: "buy white oak",
+        isCompleted : false,
+        date : "9 July, 2025",
+        priority : "low"
+
+      },
+
+      {
+        title: "buy s class",
+        isCompleted : false,
+        date : "9 July, 2025",
+        priority : "medium"
+
+      },
+
+      {
+        title: "buy house",
+        isCompleted : true,
+        date : "9 July, 2025",
+        priority : "high"
+
+      },
+
+      {
+        title: "buy netflix",
+        isCompleted : false,
+        date : "9 July, 2025",
+        priority : "low"
+
+      },
+      
+
     ],
   };
   let isLoggedIn = true;
