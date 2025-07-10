@@ -1,4 +1,21 @@
+import { useState } from "react";
+
 let DashboardView = (props) => {
+
+  let [counter, setCounter] = useState(6);
+  let [name,setName] = useState("Shahzad");
+  let count = 0;
+  let buttonClicker = ()=>{
+   setCounter((old) => {
+    return old + 5;
+   });
+  }
+
+  let changeName = (e)=>{
+    setName(()=>{
+      return e.target.value;
+    })
+  }
   // console.log(props.task)
   const taskList = props.task;
   const login = props.login;
@@ -17,16 +34,22 @@ let DashboardView = (props) => {
             <div className="stat-icon">📋</div>
             <div className="stat-content">
               <h3>Total Tasks</h3>
-              <p className="stat-number">{props.stats.total}</p>
+              <p className="stat-number">{counter}</p>
               <span className="stat-change">+3 from yesterday</span>
+              <div>
+                <button onClick={buttonClicker}>Increment</button>
+              </div>
             </div>
           </div>
           <div className="stat-card success">
             <div className="stat-icon">✅</div>
             <div className="stat-content">
               <h3>Completed</h3>
-              <p className="stat-number">{props.stats.completed}</p>
+              <p className="stat-number">{name}</p>
               <span className="stat-change">+8 today</span>
+              <div>
+                <input type="text" onChange={changeName} />
+              </div>
             </div>
           </div>
           <div className="stat-card warning">
@@ -77,7 +100,7 @@ let DashboardView = (props) => {
                 return (
                   <div key={index} className="task-item priority-high">
                     <div className="task-checkbox">
-                      <input type="checkbox" id="task1"  />
+                      <input type="checkbox" id="task1" />
                       <label htmlFor="task1"></label>
                     </div>
                     <div className="task-content">
