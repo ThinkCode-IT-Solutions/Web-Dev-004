@@ -1,21 +1,26 @@
 import { useState } from "react";
 
 let DashboardView = (props) => {
-
   let [counter, setCounter] = useState(6);
-  let [name,setName] = useState("Shahzad");
+  let [name, setName] = useState("Shahzad");
   let count = 0;
-  let buttonClicker = ()=>{
-   setCounter((old) => {
-    return old + 5;
-   });
-  }
+  let buttonClicker = () => {
+    setCounter((old) => {
+      return old + 5;
+    });
+  };
 
-  let changeName = (e)=>{
-    setName(()=>{
-      return e.target.value;
-    })
-  }
+  let changeName = (e) => {
+    if (e.target.value == "shahzad") {
+      setName(() => {
+        return "Boss";
+      });
+    } else {
+      setName(() => {
+        return e.target.value;
+      });
+    }
+  };
   // console.log(props.task)
   const taskList = props.task;
   const login = props.login;
