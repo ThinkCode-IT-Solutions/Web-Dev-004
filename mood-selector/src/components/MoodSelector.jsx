@@ -31,6 +31,7 @@ let MoodSelector = ({setMood}) => {
         console.log(item);
         setMood(item.emoji);
     }
+    // jsx document
     return(
         <>
         <h2>Select Your Mood</h2>
