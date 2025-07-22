@@ -4,6 +4,7 @@ import HomePage from "./pages/home";
 import AboutPage from "./pages/about";
 import ThankYouPage from "./pages/thank-you";
 import NotFound from "./pages/404";
+import RegisterForm from "./pages/RegistrationForm";
 
 function App() {
   let navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
       <div>
         <Link to="/"> Home </Link>
         <Link to="/about">About </Link>
+        <Link to="/register">Signup </Link>
         <button onClick={onSubmit}>Submit Form</button>
       </div>
 
@@ -28,6 +30,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/thanks" element={<ThankYouPage />} />
+          <Route path="/register" element={<RegisterForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
